@@ -10,6 +10,7 @@
     </router-view>
 
     <FooterNav />
+    <InstallPrompt />
   </div>
 </template>
 
@@ -17,6 +18,7 @@
 import { onMounted } from 'vue'
 import FooterNav from '@/components/FooterNav.vue'
 import SplashScreen from '@/components/SplashScreen.vue'
+import InstallPrompt from '@/components/InstallPrompt.vue'
 
 onMounted(() => {
   if ('serviceWorker' in navigator) {
