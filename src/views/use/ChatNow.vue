@@ -15,10 +15,10 @@
             <b>How to Start?</b>
             </p><br>
             <p class="text-base text-gray-600 text-center">
-            Ask to learn more about something that interests you. Ask for a summary of a book in a few bullet points, or a sentence, or one word.
+            This ChatGPT chat is private and nothing you ask will be shared with anyone. Try just asking a question in the message field below.
             </p><br>
             <p class="text-base text-gray-600 text-center">
-            You can tap an example prompt below and see what happens. Ask a follow up question or for more detail. 
+            Or, you can tap an example prompt below and see what happens. Ask a follow up question or for more detail. 
             </p><br>
             <div class="grid gap-4 mt-1">
               <div
