@@ -1,7 +1,7 @@
 <!-- src/components/InstallPrompt.vue -->
 <template>
     <div 
-      v-if="showPrompt"
+      v-if="showPrompt && !isStandalone"
       class="fixed bottom-16 left-0 right-0 p-4 z-50"
     >
       <div class="bg-white rounded-lg shadow-lg border border-gray-200 p-4 mx-4">
@@ -23,7 +23,7 @@
             <XIcon class="w-5 h-5" />
           </button>
         </div>
-        <div v-if="deferredPrompt" class="mt-4">
+        <div v-if="canInstall" class="mt-4">
           <button
             @click="installPWA"
             class="w-full bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
@@ -42,15 +42,17 @@
   const showPrompt = ref(false)
   const deferredPrompt = ref(null)
   const instructions = ref('')
+  const isStandalone = ref(false)
+  const canInstall = ref(false)
   
   function getInstructions() {
     const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream
     const isAndroid = /Android/.test(navigator.userAgent)
   
     if (isIOS) {
-      return 'Tap the share button and then "Add to Home Screen" to install'
+      return 'Tap the share button (↑) then "Add to Home Screen" to install'
     }
-    if (deferredPrompt.value) {
+    if (canInstall.value) {
       return 'Install this app on your phone for quick access'
     }
     if (isAndroid) {
@@ -61,24 +63,45 @@
   
   // Handle install prompt
   window.addEventListener('beforeinstallprompt', (e) => {
+    // Prevent the mini-infobar from appearing on mobile
     e.preventDefault()
+    // Stash the event so it can be triggered later
     deferredPrompt.value = e
+    canInstall.value = true
     showPrompt.value = true
     instructions.value = getInstructions()
+  })
+  
+  // Track successful installs
+  window.addEventListener('appinstalled', () => {
+    // Clear the deferredPrompt so it can be garbage collected
+    deferredPrompt.value = null
+    canInstall.value = false
+    showPrompt.value = false
+    // Optionally, send analytics event
+    console.log('PWA was installed')
   })
   
   const installPWA = async () => {
     if (!deferredPrompt.value) return
     
-    deferredPrompt.value.prompt()
-    const result = await deferredPrompt.value.userChoice
-    
-    if (result.outcome === 'accepted') {
-      console.log('PWA installed')
-      showPrompt.value = false
+    try {
+      // Show the install prompt
+      deferredPrompt.value.prompt()
+      // Wait for the user to respond to the prompt
+      const { outcome } = await deferredPrompt.value.userChoice
+      
+      if (outcome === 'accepted') {
+        console.log('User accepted the install prompt')
+      } else {
+        console.log('User dismissed the install prompt')
+      }
+    } catch (err) {
+      console.error('Error during installation:', err)
+    } finally {
+      deferredPrompt.value = null
+      canInstall.value = false
     }
-    
-    deferredPrompt.value = null
   }
   
   const dismissPrompt = () => {
@@ -87,14 +110,18 @@
   }
   
   onMounted(() => {
-    // Only show prompt if not already installed and not previously dismissed
-    if (window.matchMedia('(display-mode: standalone)').matches) return
-    if (localStorage.getItem('pwaPromptDismissed')) return
+    // Check if running as standalone PWA
+    isStandalone.value = window.matchMedia('(display-mode: standalone)').matches ||
+                        window.navigator.standalone || 
+                        document.referrer.includes('android-app://')
+                        
+    // Don't show if already installed or previously dismissed
+    if (isStandalone.value || localStorage.getItem('pwaPromptDismissed')) return
     
     // Set initial instructions
     instructions.value = getInstructions()
     
-    // Show prompt after a short delay
+    // Show prompt after a delay
     setTimeout(() => {
       showPrompt.value = true
     }, 2000)

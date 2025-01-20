@@ -200,7 +200,7 @@ const suggestedPrompts = [
   "What even are you and what can you do to make my life better or easier?",
   "Design a dinner party menu for 6 people, Italian themed. One guest is vegetarian. Make sure the recipes are easy but they seem hard and fancy.",
   "My kid said they want a dog, a lizard, or a marmot. You've got to help me with basic info and costs and stuff.",
-  "Summarize in a table every movie starring Patrick Swayze in one word and whether critics liked it or not."
+  "Summarize in a table every movie starring Michael J. Fox in one word and whether critics liked it or not."
 ]
 
 // Auto-grow textarea
