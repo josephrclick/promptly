@@ -25,7 +25,7 @@
             I've probably talked with you recently about all this, which is why you're reading this right now. Maybe you've never asked ChatGPT a question. Maybe you have zero idea what any of this is. Maybe you've heard the buzz but like what's the big deal...
           </p>
           <p class="text-gray-700 text-lg leading-relaxed mb-6">
-            The big deal may not be obvious at first, but if you spend some time talking with ChatGPT, ideas will start to pop up and you'll explore more and more. I bet you'll be constantly impressed by what these chats can do and you will find neat ways to use it.
+            The big deal may not be obvious at first, but if you spend some time talking with ChatGPT, ideas will start to pop up and you'll explore more and more. I bet you'll be constantly impressed by what these AI models can do and you will find neat ways to use them in your life.
           </p>
           <h2 class="text-xl font-semibold">
             Ready to try it? 👇
