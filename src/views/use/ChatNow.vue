@@ -161,6 +161,10 @@ import { useMessageStore } from '@/stores/messageStore'
 import { OPENAI_CONFIG } from '@/config.js'
 import { marked } from 'marked'
 
+// Get API config from either environment variables or config file
+const API_KEY = process.env.OPENAI_API_KEY || OPENAI_CONFIG.API_KEY
+const API_URL = process.env.OPENAI_API_URL || OPENAI_CONFIG.API_URL || 'https://api.openai.com/v1/chat/completions'
+
 // Store
 const messageStore = useMessageStore()
 const router = useRouter()
@@ -368,15 +372,15 @@ const scrollToBottom = async () => {
 
 // Call ChatGPT API
 const callChatGPT = async (messages) => {
-  if (!OPENAI_CONFIG.API_KEY) {
+  if (!API_KEY) {
     throw new Error('OpenAI API key not configured')
   }
 
-  const response = await fetch(OPENAI_CONFIG.API_URL, {
+  const response = await fetch(API_URL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${OPENAI_CONFIG.API_KEY}`
+      'Authorization': `Bearer ${API_KEY}`
     },
     body: JSON.stringify({
       model: 'gpt-4o-mini',

@@ -1,78 +1,51 @@
-/* Main CSS for PWA */
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* DaisyUI Components */
-
-
-/* Reset and Base Styles */
-body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Inter', sans-serif;
+@layer base {
+  body {
+    @apply m-0 p-0 box-border font-sans;
+  }
 }
 
-/* Utility Classes Overrides (if needed) */
-.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: white;
-  border-bottom: 1px solid #e5e7eb;
-}
+@layer components {
+  .navbar {
+    @apply flex items-center justify-between bg-white border-b border-gray-200;
+  }
 
-.hero {
-  background-color: #eff6ff;
-  color: #1f2937;
-  text-align: center;
-  padding: 4rem 2rem;
-}
-
-/* Section Styling */
-section {
-  margin-top: 0rem;
-  margin-bottom: 1rem;
-}
-
-/* Card Component */
-.card {
-  border-radius: 0.5rem;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-}
-
-.card h3 {
-  font-size: 1.25rem;
-  margin-bottom: 0.5rem;
-  color: #374151;
-}
-
-.card p {
-  color: #6b7280;
-  line-height: 1.5;
-}
-
-/* Footer */
-footer {
-  background-color: #1f2937;
-  color: white;
-  text-align: center;
-  padding: 1rem;
-}
-
-/* Media Queries */
-@media (min-width: 768px) {
   .hero {
-    padding: 6rem 4rem;
+    @apply bg-blue-50 text-gray-800 text-center py-16 px-8;
   }
+
   .card {
-    padding: 2rem;
+    @apply rounded-lg shadow-md transition-transform duration-300;
   }
+
+  .card:hover {
+    @apply -translate-y-1 shadow-lg;
+  }
+
+  .card h3 {
+    @apply text-xl mb-2 text-gray-700;
+  }
+
+  .card p {
+    @apply text-gray-600 leading-relaxed;
+  }
+}
+
+@layer utilities {
+  .section-spacing {
+    @apply mt-0 mb-4;
+  }
+}
+
+/* Custom styles that can't be handled by Tailwind */
+.typing-indicator {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
 }
