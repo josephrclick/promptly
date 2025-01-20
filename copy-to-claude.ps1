@@ -1,33 +1,34 @@
 # Create CLAUDE directory if it doesn't exist
 New-Item -ItemType Directory -Force -Path ".\CLAUDE"
 
-# Array of files to copy
+# Base array of files to copy
 $filesToCopy = @(
-    "./public/index.html",
+    "./index.html",
     "./public/manifest.json",
-    "./src/App.vue",
-    "./src/main.js",
-    "./src/service-worker.js",
-    "./src/views/Home.vue",
-    "./src/views/Learn.vue",
-    "./src/views/learn/Beginner.vue",
-    "./src/assets/main.css",
-    "./src/components/CategoryCard.vue",
-    "./src/components/ContentCard.vue",
-    "./src/components/FeatureCard.vue",
-    "./src/components/MainNav.vue",
-    "./src/views/learn/courses/BeginnerCourseOne.vue",
-    "./src/views/use/ChatNow.vue"
+    "jsconfig.json",
+    "package.json",
+    "postcss.config.cjs",
+    "site.webmanifest",
+    "tailwind.config.js",
+    "vercel.json",
+    "vite.config.js",
+    "vue.config.js"
 )
 
-# Copy each file directly to CLAUDE folder
-foreach ($file in $filesToCopy) {
-    $fileName = Split-Path $file -Leaf
-    
-    $destination = Join-Path ".\CLAUDE" $fileName
-    
-    # Copy file if it exists
+# Get all files under ./src/ recursively
+$srcFiles = Get-ChildItem -Path ".\src" -Recurse -File | ForEach-Object { $_.FullName }
+
+# Combine the arrays
+$allFiles = $filesToCopy + $srcFiles
+
+# Process each file
+foreach ($file in $allFiles) {
     if (Test-Path $file) {
+        # Get just the filename without the path
+        $fileName = Split-Path $file -Leaf
+        $destination = Join-Path ".\CLAUDE" $fileName
+        
+        # Copy file
         Copy-Item $file -Destination $destination -Force
         Write-Host "Copied: $file -> $fileName"
     } else {

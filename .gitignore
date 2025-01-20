@@ -2,6 +2,8 @@
 node_modules
 /dist
 src/config.js
+/CLAUDE
+*.ps1
 
 # local env files
 .env.local

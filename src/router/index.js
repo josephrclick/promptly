@@ -6,7 +6,6 @@ import Home from '@/views/Home.vue'
 import Learn from '@/views/Learn.vue'
 import News from '@/views/News.vue'
 import Use from '@/views/Use.vue'
-import CategoryView from '@/views/CategoryView.vue'
 
 // Learn section views
 import Beginner from '@/views/learn/Beginner.vue'
@@ -137,12 +136,6 @@ const router = createRouter({
       path: '/use/use-cases',
       name: 'use-cases',
       component: UseCases
-    },
-    // Category view
-    {
-      path: '/category',
-      name: 'category',
-      component: CategoryView
     }
   ]
 })

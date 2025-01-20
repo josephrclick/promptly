@@ -158,12 +158,12 @@ import { ref, onMounted, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import { Send, Bot, User } from 'lucide-vue-next'
 import { useMessageStore } from '@/stores/messageStore'
-import { OPENAI_CONFIG } from '@/config.js'
 import { marked } from 'marked'
 
 // Get API config from either environment variables or config file
-const API_KEY = process.env.OPENAI_API_KEY || OPENAI_CONFIG.API_KEY
-const API_URL = process.env.OPENAI_API_URL || OPENAI_CONFIG.API_URL || 'https://api.openai.com/v1/chat/completions'
+// Replace with this
+const API_KEY = import.meta.env.VITE_OPENAI_API_KEY
+const API_URL = import.meta.env.VITE_OPENAI_API_URL || 'https://api.openai.com/v1/chat/completions'
 
 // Store
 const messageStore = useMessageStore()
