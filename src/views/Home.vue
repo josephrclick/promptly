@@ -8,34 +8,28 @@
           promptly.
         </h1>
         <p class="text-xl text-gray-600">
-          A proof of concept mobile-first app built with ChatGPT
+          A <i>proof of concept</i> mobile-first web app built with ChatGPT
           </p>
           </div>
         </section>
 
     <!-- Main Content -->
     <main class="max-w-3xl mx-auto px-6 pb-8">
-      <div class="space-y-8">
+      <div class="space-y-4">
         <!-- Personal Story Cards -->
         <section class="bg-white rounded-2xl shadow-lg p-8">
           <p class="text-gray-800 text-lg leading-relaxed mb-6">
-            I built this app casually over a weekend using ChatGPT. From scratch. By having a conversation.
+            I built this app from scratch over a weekend using ChatGPT. I write code for fun sometimes and this would have taken me weeks of work on my own to figure out. Instead, it's like I guided an expert coder and watched over its shoulder the whole time and I learned a ton.
           </p>
           <p class="text-gray-700 text-lg leading-relaxed mb-6">
-            We all need to be learning how to leverage this technology as much as possible, right now. We can still be early to this party and ride the massive wave that's coming in.
+            I've probably talked with you recently about all this, which is why you're reading this right now. Maybe you've never asked ChatGPT a question. Maybe you have zero idea what any of this is. Maybe you've heard the buzz but like what's the big deal...
           </p>
           <p class="text-gray-700 text-lg leading-relaxed mb-6">
-            My intent is to get you over any reluctance or skepticism of AI you may have and get you to have (possibly?) your first chat with ChatGPT <b>right now</b>.
+            It's maybe not obvious at first but if you spend some time talking and asking questions, ideas will start to pop up. I bet you'll be constantly impressed by what these chats can do and you will find neat and nice ways to use it.
           </p>
-          <p class="text-gray-700 text-lg leading-relaxed mb-6">
-            I wanted to also provide some curated learning content as a kind of crash course to get you up to speed on the basics and to start using ChatGPT.
-          </p>
-          <h2 class="text-xl font-semibold mb-4">
-            Ready to Try ChatGPT?
+          <h2 class="text-xl font-semibold">
+            Ready to try it? 👇
           </h2>
-          <p class="text-gray-700 text-lg leading-relaxed">
-            Before you check the Learn section, try this: 👇
-          </p>
           
         </section>
 

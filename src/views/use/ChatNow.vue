@@ -20,10 +20,7 @@
             <p class="text-base text-gray-600 text-center">
             You can tap an example prompt below and see what happens. Ask a follow up question or for more detail. 
             </p><br>
-            <p class="text-base text-gray-600 text-center">
-            Or, ask ChatGPT what the hell it is and how to use it to solve a problem or help you with a task!
-            </p>
-            <div class="grid gap-4 mt-4">
+            <div class="grid gap-4 mt-1">
               <div
                 v-for="(prompt, index) in suggestedPrompts"
                 :key="index"
@@ -75,10 +72,28 @@
                       </div>
                     </div>
                     <div v-else>
-                      <div 
-                        class="markdown-body"
-                        v-html="formatMessage(message.content)"
-                      ></div>
+                      <!-- Message Content Section -->
+                      <div class="markdown-body">
+                        <template v-if="hasMarkdownTable(message.content)">
+                          <template v-for="(block, index) in parseMessageContent(message.content)" :key="index">
+                            <TableResponse 
+                              v-if="block.type === 'table'"
+                              :headers="block.data.headers"
+                              :rows="block.data.rows"
+                            />
+                            <div 
+                              v-else 
+                              v-html="marked(block.content)"
+                            ></div>
+                          </template>
+                        </template>
+                        <div 
+                          v-else 
+                          v-html="marked(message.content)"
+                        ></div>
+                      </div>
+
+                     
                       <span 
                         v-if="message.isStreaming" 
                         class="inline-block ml-1 animate-pulse"
@@ -159,6 +174,8 @@ import { useRouter } from 'vue-router'
 import { Send, Bot, User } from 'lucide-vue-next'
 import { useMessageStore } from '@/stores/messageStore'
 import { marked } from 'marked'
+import TableResponse from '@/components/TableResponse.vue'
+import { parseMarkdownTable, hasMarkdownTable } from '@/utils/tableParser'
 
 // Get API config from either environment variables or config file
 // Replace with this
@@ -180,9 +197,10 @@ const currentPlaceholder = ref(null)
 
 // Suggested prompts
 const suggestedPrompts = [
-  "Design a dinner party menu for 6 people, Italian themed. One guest is vegetarian. Make sure the recipes are easy.",
-  "Compare pros, cons and costs of getting our kids a dog, lizard or marmot for their first pet.",
-  "Tell me the same joke about getting older in 3 different styles and tones."
+  "What even are you and what can you do to make my life better or easier?",
+  "Design a dinner party menu for 6 people, Italian themed. One guest is vegetarian. Make sure the recipes are easy but they seem hard and fancy.",
+  "My kid said they want a dog, a lizard, or a marmot. You've got to help me with basic info and costs and stuff.",
+  "Summarize in a table every movie starring Patrick Swayze in one word and whether critics liked it or not."
 ]
 
 // Auto-grow textarea
@@ -213,7 +231,7 @@ const handlePlaceholderPrompt = async (text) => {
   
   messages.value.push({
   role: "system",
-  content: `You are an enthusiastic and encouraging AI assistant helping someone who may be trying AI chat for the first time. Make your responses visually engaging by using:
+  content: `You are an enthusiastic and encouraging AI assistant helping someone who may be trying AI chat for the first time. Your goal is to impress them with AI's capabilities while keeping responses clear and helpful. Show genuine interest in their questions and provide thoughtful, practical answers that demonstrate your capabilities. When appropriate, end your responses by asking about their specific situation or encouraging them to explore the topic further. For example, if they ask about a recipe, share the recipe and then ask what ingredients they have or their cooking preferences. If they ask about a topic, share key insights and then ask what aspect interests them most. Keep questions focused and natural - don't interrogate. Your tone should be warm and conversational while remaining informative and casually professional. These users are our friends and family, so you can be a bit quirky and fun without overdoing it. You will occassionally remind users they can guide your responses to a great degree, as they may not know this. As one of your top goals is to encourage users to use ChatGPT more, you will always indicate, within reason, functionality that exists in different OpenAI models or modes, except having to leverage APIs, whether free or on a paid plan, so the user is aware of all available capabilities. Make your responses visually engaging by using:
   - **Bold text** for important points
   - Bullet points for lists
   - Line breaks for readability
@@ -267,7 +285,15 @@ const processMessage = async (message) => {
     const { stream, decoder } = await callChatGPT([
       {
         role: "system",
-        content: "You are an enthusiastic and encouraging AI assistant helping someone who may be trying AI chat for the first time. Your goal is to impress them with AI's capabilities while keeping responses clear and helpful. Show genuine interest in their questions and provide thoughtful, practical answers that demonstrate your capabilities. When appropriate, end your responses by asking about their specific situation or encouraging them to explore the topic further. For example, if they ask about a recipe, share the recipe and then ask what ingredients they have or their cooking preferences. If they ask about a topic, share key insights and then ask what aspect interests them most. Keep questions focused and natural - don't interrogate. Your tone should be warm and conversational while remaining informative and professional."
+ content: `You are an enthusiastic and encouraging AI assistant helping someone who may be trying AI chat for the first time. Your goal is to impress them with AI's capabilities while keeping responses clear and helpful. Show genuine interest in their questions and provide thoughtful, practical answers that demonstrate your capabilities. When appropriate, end your responses by asking about their specific situation or encouraging them to explore the topic further. For example, if they ask about a recipe, share the recipe and then ask what ingredients they have or their cooking preferences. If they ask about a topic, share key insights and then ask what aspect interests them most. Keep questions focused and natural - don't interrogate. Your tone should be warm and conversational while remaining informative and casually professional. These users are our friends and family, so you can be a bit quirky and fun without overdoing it. You will occassionally remind users they can guide your responses to a great degree, as they may not know this. As one of your top goals is to encourage users to use ChatGPT more, you will always indicate, within reason, functionality that exists in different OpenAI models or modes, except having to leverage APIs, whether free or on a paid plan, so the user is aware of all available capabilities. Make your responses visually engaging by using:
+  - **Bold text** for important points
+  - Bullet points for lists
+  - Line breaks for readability
+  - \`code blocks\` when sharing specific terms or examples
+  - Tables when comparing options
+  
+  Your goal is to impress them with AI's capabilities while keeping responses clear and helpful. Show genuine interest in their questions and provide thoughtful, practical answers that demonstrate your capabilities. When appropriate, end your responses by asking about their specific situation or encouraging them to explore the topic further.`
+        
       },
       ...messages.value.filter(m => !m.isPlaceholderPrompt)
     ])
@@ -410,10 +436,31 @@ const leaveChat = () => {
 
 // format markdown
 const formatMessage = (content) => {
-  return marked(content, {
-    breaks: true,  // Honors line breaks
-    gfm: true      // GitHub Flavored Markdown
-  });
+  if (hasMarkdownTable(content)) {
+    const tables = parseMarkdownTable(content);
+    
+    // Replace each table with a placeholder
+    let formattedContent = content;
+    tables.forEach((table, index) => {
+      const tableRegex = /\|(.+)\|\n\|(?:-{3,}[:|]-{3,})*\|\n((?:\|.+\|\n?)*)/;
+      formattedContent = formattedContent.replace(tableRegex, `<div data-table-index="${index}"></div>`);
+    });
+    
+    // Format the non-table content
+    const htmlContent = marked(formattedContent);
+    
+    // Re-inject the tables as Vue components
+    tables.forEach((table, index) => {
+      const placeholder = `<div data-table-index="${index}"></div>`;
+      const tableComponent = `<TableResponse :headers='${JSON.stringify(table.headers)}' :rows='${JSON.stringify(table.rows)}' />`;
+      htmlContent = htmlContent.replace(placeholder, tableComponent);
+    });
+    
+    return htmlContent;
+  }
+  
+  // If no tables, just use regular markdown formatting
+  return marked(content);
 }
 
 onMounted(() => {
@@ -426,6 +473,44 @@ onMounted(() => {
     })
   }
 })
+
+const parseMessageContent = (content) => {
+  const blocks = []
+  const tables = parseMarkdownTable(content)
+  
+  // Split content by table matches
+  const tableRegex = /\|(.+)\|\n\|(?:-{3,}[:|]-{3,})*\|\n((?:\|.+\|\n?)*)/g
+  let lastIndex = 0
+  let match
+  
+  while ((match = tableRegex.exec(content)) !== null) {
+    // Add text before table
+    if (match.index > lastIndex) {
+      blocks.push({
+        type: 'text',
+        content: content.slice(lastIndex, match.index)
+      })
+    }
+    
+    // Add table
+    blocks.push({
+      type: 'table',
+      data: tables[blocks.filter(b => b.type === 'table').length]
+    })
+    
+    lastIndex = match.index + match[0].length
+  }
+  
+  // Add remaining text after last table
+  if (lastIndex < content.length) {
+    blocks.push({
+      type: 'text',
+      content: content.slice(lastIndex)
+    })
+  }
+  
+  return blocks
+}
 </script>
 
 <style>
