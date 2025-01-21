@@ -1,71 +1,119 @@
-<!-- src/views/learn/Beginner.vue -->
+<!-- src/views/courses/BeginnerCourse2.vue -->
 <template>
-  <div class="h-screen flex flex-col bg-gradient-to-br from-blue-50 to-indigo-50">
-    <Breadcrumbs class="m-4 mb-1" />
-    <header class="flex-none text-center py-10 px-4">
-      <h1 class="text-3xl font-bold text-gray-900">Beginner Courses</h1>
-      <p class="text-base text-gray-600 mt-3">Start here. Learn the Basics. Get ahead of the curve.</p>
-    </header>
+  <CourseContentLayout
+    title="Exploring ChatGPT's Full Potential"
+    subtitle="Unlock Creative, Practical, and Fun Uses for Every Day"
+    :total-pages="7"
+    course-level="advanced"
+  >
 
-    <!-- Main Content with more spacing -->
-    <main class="flex-grow px-6 pb-4 overflow-auto">
-      <div class="grid gap-4">
-        <!-- Course 1 -->
-        <router-link to="/learn/courses/beginner-course-1" class="block">
-          <div class="bg-white rounded-xl shadow-md p-5 hover:shadow-lg transition-shadow">
-            <div class="flex items-center">
-              <div class="flex-grow">
-                <h2 class="text-xl font-semibold text-gray-900 mb-1">Course 1</h2>
-                <p class="text-base text-gray-600">What the hell is ChatGPT?</p>
-              </div>
-              <BookOpen 
-                class="text-blue-600 ml-4"
-                :size="28"
-                :strokeWidth="1.5"
-              />
-            </div>
-          </div>
-        </router-link>
+  <template #default="{ page }">
+  <!-- Content changes based on current page -->
+  <div v-if="page === 0">
+    <h2 class="text-xl font-semibold mb-4">Explore ChatGPT's Versatility</h2>
+    <p class="mb-4">
+      ChatGPT is more than just a question-answer tool. It’s a versatile assistant for creativity, problem-solving, and organization.
+    </p>
+    <p>
+      🌟 Let’s explore unique and exciting ways to use ChatGPT!
+    </p>
+  </div>
 
-        <!-- Course 2 -->
-        <router-link to="/learn/courses/beginner-course-2" class="block">
-          <div class="bg-white rounded-xl shadow-md p-5 hover:shadow-lg transition-shadow">
-            <div class="flex items-center">
-              <div class="flex-grow">
-                <h2 class="text-xl font-semibold text-gray-900 mb-1">Course 2</h2>
-                <p class="text-base text-gray-600">Placeholder</p>
-              </div>
-              <Rocket 
-                class="text-green-600 ml-4"
-                :size="28"
-                :strokeWidth="1.5"
-              />
-            </div>
-          </div>
-        </router-link>
+  <div v-else-if="page === 1">
+    <h2 class="text-xl font-semibold mb-4">Creative Writing</h2>
+    <p class="mb-4">
+      Use ChatGPT for creative tasks like:
+    </p>
+    <ul class="list-disc pl-6 mb-4">
+      <li>Writing stories, poems, or scripts</li>
+      <li>Generating ideas for essays or projects</li>
+      <li>Editing and refining written work</li>
+    </ul>
+    <p>
+      ✍️ It’s like having a co-writer at your fingertips!
+    </p>
+  </div>
 
-        <!-- Course 3 -->
-        <router-link to="/learn/courses/beginner-course-3" class="block">
-          <div class="bg-white rounded-xl shadow-md p-5 hover:shadow-lg transition-shadow">
-            <div class="flex items-center">
-              <div class="flex-grow">
-                <h2 class="text-xl font-semibold text-gray-900 mb-1">Course 3</h2>
-                <p class="text-base text-gray-600">Placeholder</p>
-              </div>
-              <Lightbulb 
-                class="text-amber-600 ml-4"
-                :size="28"
-                :strokeWidth="1.5"
-              />
-            </div>
-          </div>
-        </router-link>
-      </div>
-    </main>
+  <div v-else-if="page === 2">
+    <h2 class="text-xl font-semibold mb-4">Personal Planning</h2>
+    <p class="mb-4">
+      ChatGPT can help you organize your day or tackle big goals. Try tasks like:
+    </p>
+    <ul class="list-disc pl-6 mb-4">
+      <li>Creating to-do lists</li>
+      <li>Planning events or trips</li>
+      <li>Setting and tracking goals</li>
+    </ul>
+    <p>
+      🎯 Simplify your life with a little AI support.
+    </p>
+  </div>
+
+  <div v-else-if="page === 3">
+    <h2 class="text-xl font-semibold mb-4">Learning and Research</h2>
+    <p class="mb-4">
+      Expand your knowledge by using ChatGPT for:
+    </p>
+    <ul class="list-disc pl-6 mb-4">
+      <li>Summarizing articles or books</li>
+      <li>Explaining difficult concepts</li>
+      <li>Providing study tips or quizzes</li>
+    </ul>
+    <p>
+      🧠 A perfect tool for students and lifelong learners alike.
+    </p>
+  </div>
+
+  <div v-else-if="page === 4">
+    <h2 class="text-xl font-semibold mb-4">Creative Brainstorming</h2>
+    <p class="mb-4">
+      Stuck on an idea? ChatGPT can spark creativity by:
+    </p>
+    <ul class="list-disc pl-6 mb-4">
+      <li>Offering innovative solutions to problems</li>
+      <li>Generating names, slogans, or taglines</li>
+      <li>Suggesting new approaches to projects</li>
+    </ul>
+    <p>
+      🚀 Break through creative blocks with AI inspiration.
+    </p>
+  </div>
+
+  <div v-else-if="page === 5">
+    <h2 class="text-xl font-semibold mb-4">Problem Solving</h2>
+    <p class="mb-4">
+      ChatGPT can help you tackle challenges like:
+    </p>
+    <ul class="list-disc pl-6 mb-4">
+      <li>Debugging code or understanding errors</li>
+      <li>Finding step-by-step solutions to technical problems</li>
+      <li>Recommending tools or resources</li>
+    </ul>
+    <p>
+      🔧 Use it as a problem-solving partner.
+    </p>
+  </div>
+
+  <div v-else-if="page === 6">
+    <h2 class="text-xl font-semibold mb-4">Have Fun with ChatGPT</h2>
+    <p class="mb-4">
+      ChatGPT isn’t all work—try some fun activities like:
+    </p>
+    <ul class="list-disc pl-6 mb-4">
+      <li>Playing text-based games or puzzles</li>
+      <li>Creating fictional characters or worlds</li>
+      <li>Exploring “what if” scenarios</li>
+    </ul>
+    <p>
+      🎉 Discover the entertaining side of AI!
+    </p>
   </div>
 </template>
 
+
+  </CourseContentLayout>
+</template>
+
 <script setup>
-import { BookOpen, Rocket, Lightbulb } from 'lucide-vue-next'
-import Breadcrumbs from '@/components/Breadcrumbs.vue';
+import CourseContentLayout from '@/components/CourseContentLayout.vue'
 </script>

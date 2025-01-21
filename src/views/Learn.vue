@@ -45,9 +45,9 @@
         </router-link>
 
         <!-- Resources Section -->
-        <!--<router-link to="/learn/daily-exercise" class="block">-->
-          <div class="bg-white/60 rounded-xl shadow-md p-5 transition-shadow">
-            <div class="flex items-center opacity-50">
+        <router-link to="/learn/daily-exercise" class="block">
+          <div class="bg-white rounded-xl shadow-md p-5 hover:shadow-lg transition-shadow">
+            <div class="flex items-center">
               <div class="flex-grow">
                 <h2 class="text-xl font-semibold text-gray-900 mb-1">Resources</h2>
                 <p class="text-base text-gray-600">Links to quality learning materials.</p>
@@ -59,7 +59,7 @@
               />
             </div>
           </div>
-        <!--</router-link>-->
+        </router-link>
       </div>
     </main>
   </div>

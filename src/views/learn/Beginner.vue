@@ -20,11 +20,6 @@
                 <h2 class="text-xl font-semibold text-gray-900 mb-1">Course 1</h2>
                 <p class="text-base text-gray-600">What the hell is ChatGPT?</p>
               </div>
-              <BookOpen 
-                class="text-blue-600 ml-4"
-                :size="28"
-                :strokeWidth="1.5"
-              />
             </div>
           </div>
         </router-link>
@@ -35,13 +30,8 @@
             <div class="flex items-center">
               <div class="flex-grow">
                 <h2 class="text-xl font-semibold text-gray-900 mb-1">Course 2</h2>
-                <p class="text-base text-gray-600">Placeholder</p>
+                <p class="text-base text-gray-600">Start Using ChatGPT</p>
               </div>
-              <Rocket 
-                class="text-green-600 ml-4"
-                :size="28"
-                :strokeWidth="1.5"
-              />
             </div>
           </div>
         </router-link>
@@ -52,13 +42,8 @@
             <div class="flex items-center">
               <div class="flex-grow">
                 <h2 class="text-xl font-semibold text-gray-900 mb-1">Course 3</h2>
-                <p class="text-base text-gray-600">Placeholder</p>
-              </div>
-              <Lightbulb 
-                class="text-amber-600 ml-4"
-                :size="28"
-                :strokeWidth="1.5"
-              />
+                <p class="text-base text-gray-600">Build confidence and discover new uses</p>
+              </div>              
             </div>
           </div>
         </router-link>

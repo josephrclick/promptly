@@ -1,4 +1,4 @@
-<!-- src/views/learn/Advanced.vue -->
+<!-- src/views/learn/Beginner.vue -->
 <template>
   
   <div class="h-screen flex flex-col bg-gradient-to-br from-blue-50 to-indigo-50">
@@ -6,7 +6,7 @@
     <!-- Header with larger text -->
     <header class="flex-none text-center py-10 px-4">
       <h1 class="text-3xl font-bold text-gray-900">Advanced Courses</h1>
-      <p class="text-base text-gray-600 mt-3">Dive deeper. Unlock the value of AI in your life.</p>
+      <p class="text-base text-gray-600 mt-3">Dive Deeper. Unlock the value of AI in your life.</p>
     </header>
 
     <!-- Main Content with more spacing -->
@@ -18,13 +18,8 @@
             <div class="flex items-center">
               <div class="flex-grow">
                 <h2 class="text-xl font-semibold text-gray-900 mb-1">Course 1</h2>
-                <p class="text-base text-gray-600">What the hell is ChatGPT?</p>
+                <p class="text-base text-gray-600">Exploring ChatGPT's full potential.</p>
               </div>
-              <BookOpen 
-       tent         class="text-blue-600 ml-4"
-                :size="28"
-                :strokeWidth="1.5"
-              />
             </div>
           </div>
         </router-link>
@@ -35,13 +30,8 @@
             <div class="flex items-center">
               <div class="flex-grow">
                 <h2 class="text-xl font-semibold text-gray-900 mb-1">Course 2</h2>
-                <p class="text-base text-gray-600">Placeholder</p>
+                <p class="text-base text-gray-600">Craft better prompts for better results.</p>
               </div>
-              <Rocket 
-                class="text-green-600 ml-4"
-                :size="28"
-                :strokeWidth="1.5"
-              />
             </div>
           </div>
         </router-link>
@@ -52,13 +42,8 @@
             <div class="flex items-center">
               <div class="flex-grow">
                 <h2 class="text-xl font-semibold text-gray-900 mb-1">Course 3</h2>
-                <p class="text-base text-gray-600">Placeholder</p>
-              </div>
-              <Lightbulb 
-                class="text-amber-600 ml-4"
-                :size="28"
-                :strokeWidth="1.5"
-              />
+                <p class="text-base text-gray-600">Learn more AI tools than just chat.</p>
+              </div>              
             </div>
           </div>
         </router-link>
