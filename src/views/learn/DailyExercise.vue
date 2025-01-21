@@ -1,6 +1,6 @@
 <!-- src/views/Home.vue -->
 <template>
-  <div class="h-screen flex flex-col bg-gradient-to-br from-blue-50 to-indigo-50">
+  <div class="min-h-screen flex flex-col bg-gradient-to-br from-blue-50 to-indigo-50">
     <Breadcrumbs class="m-4 mb-1" />
     <header class="flex-none text-center py-10 px-4">
       <h1 class="text-3xl font-bold text-gray-900">Resources</h1>
