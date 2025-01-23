@@ -20,7 +20,7 @@
         <!-- Personal Story Cards -->
         <section class="bg-white rounded-2xl shadow-lg p-8">
           <p class="text-gray-800 text-lg leading-relaxed mb-6">
-            I built this app from scratch over a weekend using ChatGPT. I write code for fun sometimes and this would have taken me weeks of work on my own to figure out. Instead, it's like I guided an expert coder and watched over its shoulder the whole time and I learned a ton.
+            v1.0.6 - I built this app from scratch over a weekend using ChatGPT. I write code for fun sometimes and this would have taken me weeks of work on my own to figure out. Instead, it's like I guided an expert coder and watched over its shoulder the whole time and I learned a ton.
           </p>
           <p class="text-gray-700 text-lg leading-relaxed mb-6">
             I've probably talked with you recently about all this, which is why you're reading this right now. Maybe you've never asked ChatGPT a question. Maybe you have zero idea what any of this is. Maybe you've heard the buzz but like what's the big deal...
