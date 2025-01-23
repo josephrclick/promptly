@@ -15,7 +15,7 @@
         </section>
 
     <!-- Main Content -->
-    <main class="max-w-3xl mx-auto px-6 pb-8">
+    <main class="max-w-3xl mx-auto px-6 pb-24">
       <div class="space-y-4">
         <!-- Personal Story Cards -->
         <section class="bg-white rounded-2xl shadow-lg p-8">
