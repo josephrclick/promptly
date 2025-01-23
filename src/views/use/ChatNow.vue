@@ -174,7 +174,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, nextTick } from 'vue'
+import { ref, onMounted, nextTick, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import { Send, Bot, User } from 'lucide-vue-next'
 import { useMessageStore } from '@/stores/messageStore'
