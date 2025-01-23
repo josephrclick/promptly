@@ -1,36 +1,42 @@
 // src/utils/tableParser.js
 
-export const hasMarkdownTable = (content) => {
-  const tableRegex = /\|(.+)\|\n\|(?:-{3,}[:|]-{3,})*\|\n((?:\|.+\|\n?)*)/;
-  return tableRegex.test(content);
-};
-
-export const parseMarkdownTable = (content) => {
-  const tables = [];
-  const tableRegex = /\|(.+)\|\n\|(?:-{3,}[:|]-{3,})*\|\n((?:\|.+\|\n?)*)/g;
-  
-  let match;
-  while ((match = tableRegex.exec(content)) !== null) {
-    const headerRow = match[1].trim();
-    const dataRows = match[2].trim().split('\n');
+export const parseMarkdownTable = (markdownText) => {
+    // Find table in markdown text
+    const tableRegex = /\|(.+)\|\n\|(?:-{3,}[:|]-{3,})*\|\n((?:\|.+\|\n?)*)/g;
+    const tables = [];
     
-    const headers = headerRow
-      .split('|')
-      .map(cell => cell.trim())
-      .filter(cell => cell !== '');
+    let match;
+    while ((match = tableRegex.exec(markdownText)) !== null) {
+      const headerRow = match[1];
+      const bodyRows = match[2];
       
-    const rows = dataRows.map(row => 
-      row
+      // Parse headers
+      const headers = headerRow
         .split('|')
-        .map(cell => cell.trim())
-        .filter(cell => cell !== '')
-    );
+        .filter(cell => cell.trim())
+        .map(cell => cell.trim());
+      
+      // Parse body rows
+      const rows = bodyRows
+        .trim()
+        .split('\n')
+        .map(row => 
+          row
+            .split('|')
+            .filter(cell => cell.trim())
+            .map(cell => cell.trim())
+        );
+      
+      tables.push({
+        headers,
+        rows
+      });
+    }
     
-    tables.push({
-      headers,
-      rows
-    });
-  }
+    return tables;
+  };
   
-  return tables;
-};
+  export const hasMarkdownTable = (text) => {
+    const tableRegex = /\|(.+)\|\n\|(?:-{3,}[:|]-{3,})*\|\n((?:\|.+\|\n?)*)/;
+    return tableRegex.test(text);
+  };

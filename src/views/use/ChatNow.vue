@@ -1,6 +1,5 @@
 <!-- src/views/ChatNow.vue -->
 <template>
-  <div v-if="isInitialized" class="h-screen flex flex-col bg-gray-50">
   <div class="h-screen flex flex-col bg-gray-50">    
     <!-- Main Chat Container -->
     <div class="flex-grow flex flex-col overflow-hidden">
@@ -167,14 +166,10 @@
       </div>
     </div>
   </div>
-  </div>
-  <div v-else class="h-screen flex items-center justify-center bg-gray-50">
-    <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
-  </div>
 </template>
 
 <script setup>
-import { ref, onMounted, nextTick, watch } from 'vue'
+import { ref, onMounted, nextTick } from 'vue'
 import { useRouter } from 'vue-router'
 import { Send, Bot, User } from 'lucide-vue-next'
 import { useMessageStore } from '@/stores/messageStore'
@@ -187,25 +182,8 @@ import { parseMarkdownTable, hasMarkdownTable } from '@/utils/tableParser'
 const API_KEY = import.meta.env.VITE_OPENAI_API_KEY
 const API_URL = import.meta.env.VITE_OPENAI_API_URL || 'https://api.openai.com/v1/chat/completions'
 
-watch(
-  () => import.meta.env.VITE_OPENAI_API_KEY,
-  (newValue) => {
-    if (!newValue) {
-      console.error('OpenAI API key not found')
-    }
-  },
-  { immediate: true }
-)
-
 // Store
 const messageStore = useMessageStore()
-
-onMounted(() => {
-  if (!messageStore) {
-    throw new Error('Message store not initialized')
-  }
-})
-
 const router = useRouter()
 
 // State
@@ -216,22 +194,6 @@ const messagesContainer = ref(null)
 const messageInput = ref(null)
 const placeholderValue = ref('')
 const currentPlaceholder = ref(null)
-
-
-const isInitialized = ref(false)
-
-onMounted(async () => {
-  try {
-    await Promise.all([
-      // Wait for critical resources
-      checkApiKey(),
-      initializeStore()
-    ])
-    isInitialized.value = true
-  } catch (error) {
-    console.error('Initialization failed:', error)
-  }
-})
 
 // Suggested prompts
 const suggestedPrompts = [
