@@ -36,7 +36,7 @@
 
         <!-- Call to Action -->
         <router-link to="/use/chat-now" class="block">
-          <section class="bg-blue-600 rounded-2xl shadow-lg p-8 text-white">
+          <section class="bg-blue-400 rounded-2xl shadow-xl p-8 text-white">
             <p class="text-lg text-center">
               Tap here to start a new free chat with ChatGPT in this app
             </p>
