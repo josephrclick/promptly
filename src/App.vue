@@ -2,13 +2,15 @@
 <template>
   <div class="min-h-screen flex flex-col">
     <SplashScreen />
-    
-    <router-view v-slot="{ Component }" class="flex-grow pb-16">
-      <transition name="fade" mode="out-in">
-        <component :is="Component" />
-      </transition>
-    </router-view>
-
+    <div class="flex-grow pb-16">
+      <router-view v-slot="{ Component }">
+        <transition name="fade" mode="out-in">
+          <div>
+            <component :is="Component" />
+          </div>
+        </transition>
+      </router-view>
+    </div>
     <FooterNav />
     <InstallPrompt />
   </div>

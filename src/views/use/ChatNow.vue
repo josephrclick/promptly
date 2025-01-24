@@ -447,7 +447,7 @@ const formatMessage = (content) => {
     });
     
     // Format the non-table content
-    const htmlContent = marked(formattedContent);
+    var htmlContent = marked(formattedContent);
     
     // Re-inject the tables as Vue components
     tables.forEach((table, index) => {
