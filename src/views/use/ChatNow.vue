@@ -1,5 +1,6 @@
 <!-- src/views/ChatNow.vue -->
 <template>
+  <Breadcrumbs class="m-4 mb-1" />
   <div class="h-screen flex flex-col bg-gray-50">    
     <!-- Main Chat Container -->
     <div class="flex-grow flex flex-col overflow-hidden">
@@ -10,21 +11,21 @@
       >
         <div class="max-w-3xl mx-auto px-4">
           <!-- Welcome Message -->
-          <div v-if="messages.length === 0" class="pt-8">
-            <p class="text-base text-gray-600 text-center">
+          <div v-if="messages.length === 0" class="pt-4">
+            <p class="text-base text-gray-700 text-center">
             <b>How to Start?</b>
             </p><br>
-            <p class="text-base text-gray-600 text-center">
+            <p class="text-base text-gray-700 text-center">
             This ChatGPT chat is private and nothing you ask will be shared with anyone. Try just asking a question in the message field below.
             </p><br>
-            <p class="text-base text-gray-600 text-center">
+            <p class="text-base text-gray-700 text-center">
             Or, you can tap an example prompt below and see what happens. Ask a follow up question or for more detail. 
             </p><br>
             <div class="grid gap-4 mt-1">
               <div
                 v-for="(prompt, index) in suggestedPrompts"
                 :key="index"
-                class="bg-white rounded-lg border border-gray-200 p-4 hover:bg-gray-50 cursor-pointer transition-all shadow-md hover:shadow-xl"
+                class="bg-white rounded-lg border border-gray-400 p-4 hover:bg-gray-100 cursor-pointer transition-all shadow-xl hover:shadow-2xl"
                 @click="handlePromptSelection(prompt)"
               >        
                 <p class="text-gray-600">{{ prompt }}</p>
@@ -176,6 +177,7 @@ import { useMessageStore } from '@/stores/messageStore'
 import { marked } from 'marked'
 import TableResponse from '@/components/TableResponse.vue'
 import { parseMarkdownTable, hasMarkdownTable } from '@/utils/tableParser'
+import Breadcrumbs from '@/components/Breadcrumbs.vue'
 
 // Get API config from either environment variables or config file
 // Replace with this
