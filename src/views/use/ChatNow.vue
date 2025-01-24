@@ -19,7 +19,7 @@
             This ChatGPT chat is private and nothing you ask will be shared with anyone. Try just asking a question in the message field below.
             </p><br>
             <p class="text-base text-gray-700 text-center">
-            Or, you can tap an example prompt below and see what happens. Ask a follow up question or for more detail. 
+            Or, you can tap an example prompt and see what happens. Ask a follow up question or for more detail. 
             </p><br>
             <div class="grid gap-4 mt-1">
               <div
