@@ -412,7 +412,7 @@ const callChatGPT = async (messages) => {
       'Authorization': `Bearer ${API_KEY}`
     },
     body: JSON.stringify({
-      model: 'gpt-4o',
+      model: 'o1-mini',
       messages: messages.map(msg => ({
         role: msg.role,
         content: msg.content
