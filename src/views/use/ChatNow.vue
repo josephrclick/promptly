@@ -200,10 +200,9 @@ const currentPlaceholder = ref(null)
 // Suggested prompts
 const suggestedPrompts = [
   "What exactly are you and what can you do to make my life better?",
-  "I have leftover chicken breast and rice, some potatoes, cheese and tomatoes I need to use and I've got basic pantry staples. What are some easy recipes I can try?",
-  "Say I'm dealt A♠ A♦ 7♦ 8♦ K♦ on Bonus Poker. What's they play for a typical machine over the long run?",
-  "Write a couple lines I can post on Facebook wishing my loser step-nephew a happy birthday I guess. Write one fake and happy and one how I really feel...",
-  "Summarize in a table every movie starring Michael J. Fox in one word and whether critics liked it or not."
+  "I want to make a 3 course meal for 4 with a salad that isn't typical, steak, and some greens and potatoes. Plan a menu with easy to make dishes that seem much harder to make and write my grocery list organized by where things are in the store.",
+  "Say I'm dealt A♠ A♦ 7♦ 8♦ K♦ on Bonus Poker. I'm an expert so break down the EV over a million hands and summarize without the math.",
+  "Summarize 3 lesser known literary masterpieces in one sentence and pick one for me to read."
 ]
 
 // Auto-grow textarea
