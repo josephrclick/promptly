@@ -417,7 +417,7 @@ const callChatGPT = async (messages) => {
         role: msg.role,
         content: msg.content
       })),
-      temperature: 0.7,
+      temperature: 1,
       stream: true
     })
   })
