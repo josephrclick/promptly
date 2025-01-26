@@ -201,7 +201,7 @@ const currentPlaceholder = ref(null)
 const suggestedPrompts = [
   "What exactly are you and what can you do to make my life better?",
   "I want to make a 3 course meal for 4 with a salad that isn't typical, steak, and some greens and potatoes. Plan a menu with easy to make dishes that seem much harder to make and write my grocery list organized by where things are in the store.",
-  "Say I'm dealt A♠ A♦ 7♦ 8♦ K♦ on Bonus Poker. I'm an expert so break down the EV over a million hands and summarize without the math.",
+  "In video poker, say I'm dealt A♠ A♦ 7♦ 8♦ K♦ on Double Bonus Poker. Do I hold Aces? Draw to the flush or Royal? I'm an expert so break down the EV over a million hands and summarize without the math. Also what's the typical pay scale for that game?",
   "Summarize 3 lesser known literary masterpieces in one sentence and pick one for me to read."
 ]
 
