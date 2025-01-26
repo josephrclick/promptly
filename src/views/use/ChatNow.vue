@@ -200,8 +200,9 @@ const currentPlaceholder = ref(null)
 // Suggested prompts
 const suggestedPrompts = [
   "What exactly are you and what can you do to make my life better?",
-  "I have some chicken breast, salami, tomatoes, greens, cheese, rice, and some other pantry staples I need to use. Find me recipes in different styles and cuisines I can try. Make sure the recipes are easy but they seem hard and fancy.",
-  "My kid said they want a dog, a lizard, or a marmot. You've got to help me with basic info and costs and stuff.",
+  "I have leftover chicken breast and rice, some potatoes, cheese and tomatoes I need to use and I've got basic pantry staples. What are some easy recipes I can try?",
+  "Say I'm dealt A♠ A♦ 7♦ 8♦ K♦ on Bonus Poker. What's they play for a typical machine over the long run?",
+  "Write a couple lines I can post on Facebook wishing my loser step-nephew a happy birthday I guess. Write one fake and happy and one how I really feel...",
   "Summarize in a table every movie starring Michael J. Fox in one word and whether critics liked it or not."
 ]
 
