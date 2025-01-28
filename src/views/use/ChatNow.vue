@@ -1,6 +1,5 @@
 <!-- src/views/ChatNow.vue -->
 <template>
-  <Analytics />
   <Breadcrumbs class="m-4 mb-1" />
   <div class="h-screen flex flex-col bg-gray-50">    
     <!-- Main Chat Container -->
@@ -179,7 +178,6 @@ import { marked } from 'marked'
 import TableResponse from '@/components/TableResponse.vue'
 import { parseMarkdownTable, hasMarkdownTable } from '@/utils/tableParser'
 import Breadcrumbs from '@/components/Breadcrumbs.vue'
-import { Analytics } from "@vercel/analytics/react"
 
 // Get API config from either environment variables or config file
 // Replace with this

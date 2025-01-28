@@ -1,6 +1,5 @@
 <!-- src/App.vue -->
 <template>
-  <Analytics />
   <div class="min-h-screen flex flex-col">
     <SplashScreen />
     <div class="flex-grow pb-16">
@@ -22,7 +21,6 @@ import { onMounted } from 'vue'
 import FooterNav from '@/components/FooterNav.vue'
 import SplashScreen from '@/components/SplashScreen.vue'
 import InstallPrompt from '@/components/InstallPrompt.vue'
-import { Analytics } from "@vercel/analytics/react"
 
 onMounted(() => {
   if ('serviceWorker' in navigator) {
