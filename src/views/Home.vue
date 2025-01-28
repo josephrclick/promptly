@@ -1,6 +1,7 @@
 <!-- src/views/Home.vue -->
 <template>
   <SpeedInsights />
+  <Analytics />
   <div class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50">
     <!-- Hero Section -->
     <section class="py-8 px-6">
@@ -49,4 +50,5 @@
 
 <script setup>
 import { SpeedInsights } from "@vercel/speed-insights/vue"
+import { Analytics } from "@vercel/analytics/react"
 </script>
